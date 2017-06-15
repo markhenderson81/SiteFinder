@@ -26,15 +26,15 @@
 		}
 
 		#map {
-			position: relative;
+			/*position: relative;*/
 			height:100%;
 			width: 100%;
 		}
 
 		#wrapper {
-			position: absolute;
-			top:calc(0% + 80px);
-			height:calc(100% - 80px);
+			/*position: absolute;*/
+			/*top:calc(0% + 80px);*/
+			height:100%;
 			width: 100%;
 		}
 
@@ -42,37 +42,53 @@
 			position: absolute;
 			margin: 0px auto;
 			width: 100%;
-			top: -5%;
+			top: calc(0% + 65px);
 			z-index: 99;
 			text-align: center;
 			font-family: 'Roboto', 'sans-serif';
 			font-size: 300%;
 		}
+
+		#top_bit {
+
+			float: left;
+			width: 100%;	
+		}
+
+		#full {
+			height: calc(100% - 65px);	
+		}
+
+
 </style>		
 </head>	
 
-<div style="text-align:center; width: 100%">
-	<div id="title" style="margin: 0 auto; width: 100%; color: #FFFFFF">
-		Site:
-		<input type="text" id="site_id" style="text-align:center; font-family: Helvetica; font-size: 100%" class="Resize" placeholder ="Site ID" onkeydown = "if (event.keyCode == 13)
-			document.getElementById('site_id_plot').click()" />
-		<input type="button" id="site_id_plot" value="Find" onclick="site_id_plot()" style="font-family: Helvetica; font-size: 100%" />
-		<input type="button" id="site_id_nav" value="Navigate" onclick="site_id_nav()" style="font-family: Helvetica; font-size: 100%" />	
-	</div>	
-</div>
-<div style="text-align:center; color: #FFFFFF" id="help_text">
-	Click any Map Marker to enter Street View
-</div>
+<div id="full">
+	<div id="top_bit">
+		<div style="text-align:center; width: 100%">
+			<div id="title" style="margin: 0 auto; width: 100%; color: #FFFFFF">
+				Site:
+				<input type="text" id="site_id" style="text-align:center; font-family: Helvetica; font-size: 100%" class="Resize" placeholder ="Site ID" onkeydown = "if (event.keyCode == 13)
+				document.getElementById('site_id_plot').click()" />
+				<input type="button" id="site_id_plot" value="Find" onclick="site_id_plot()" style="font-family: Helvetica; font-size: 100%" />
+				<input type="button" id="site_id_nav" value="Navigate" onclick="site_id_nav()" style="font-family: Helvetica; font-size: 100%" />	
+			</div>	
+		</div>
+		<div style="text-align:center; color: #FFFFFF" id="help_text">
+			Click any Map Marker to enter Street View
+		</div>
+	</div> 
 
-<div id="wrapper">
-	<div id="map"></div>
+	<div id="wrapper">
+		<div id="map"></div>
 
-	<div id="floating-panel">
-		<input id="clearm_button" onclick="clearMarkers();" type=button value="Hide Markers" style="font-size: 50%" />
-		<input id="smarks_button" onclick="showMarkers();" type=button value="Show All Markers" style="font-size: 50%" />
-		<input id="dmarks_button" onclick="deleteMarkers();" type=button value="Delete Markers" style="font-size: 50%" />
-		<input id="exit_button" onclick="exit_streetview();" type=button value="Exit Streetview" style="font-size: 50%" />
-		<input id="navto_button" onclick="navigateto();" type=button value="Navigate" style="font-size: 50%" />
+		<div id="floating-panel">
+			<input id="clearm_button" onclick="clearMarkers();" type=button value="Hide Markers" style="font-size: 50%" />
+			<input id="smarks_button" onclick="showMarkers();" type=button value="Show All Markers" style="font-size: 50%" />
+			<input id="dmarks_button" onclick="deleteMarkers();" type=button value="Delete Markers" style="font-size: 50%" />
+			<input id="exit_button" onclick="exit_streetview();" type=button value="Exit Streetview" style="font-size: 50%" />
+			<input id="navto_button" onclick="navigateto();" type=button value="Navigate" style="font-size: 50%" />
+		</div>
 	</div>
 </div>
 
