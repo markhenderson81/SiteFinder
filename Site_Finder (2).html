@@ -15,6 +15,7 @@
 			padding:0;
 			background-color: #464646;
 			font-size: 16px;
+			font-family: Helvetica;
 		}
 
 		#title {
@@ -48,7 +49,7 @@
 			z-index: 2;
 			top: calc(100% - 20px);
 			text-align: center;
-			font-family: 'Roboto', 'sans-serif';
+			font-family: Helvetica;
 			font-size: 300%;
 		}
 
@@ -62,6 +63,22 @@
 			height: calc(100% - 65px);	
 		}
 
+		.panel-buttons{
+			background-color: #464646;
+			color: white; 
+			border: none;
+			padding: 8px 20px;
+			border-radius: 4px;
+			border: 2px solid #FFFFFF;
+		}
+
+		.title-buttons{
+			border: none;
+			padding: 2px 20px;
+			border-radius: 4px;
+			background-color: #EEEEEE;
+		}
+
 
 </style>		
 </head>	
@@ -73,8 +90,8 @@
 				Site:
 				<input type="text" id="site_id" style="text-align:center; font-family: Helvetica; font-size: 100%" class="Resize" placeholder ="Site ID" onkeydown = "if (event.keyCode == 13)
 				document.getElementById('site_id_plot').click()" />
-				<input type="button" id="site_id_plot" value="Find" onclick="site_id_plot()" style="font-family: Helvetica; font-size: 100%" />
-				<input type="button" id="site_id_nav" value="Navigate" onclick="site_id_nav()" style="font-family: Helvetica; font-size: 100%" />	
+				<input type="button" id="site_id_plot" value="Find" onclick="site_id_plot()" style="font-family: Helvetica; font-size: 100%" class="title-buttons" onmouseover= "OnMouseIn(this)" onmouseout= "OnMouseOut(this)"/>
+				<input type="button" id="site_id_nav" value="Navigate" onclick="site_id_nav()" style="font-family: Helvetica; font-size: 100%" class="title-buttons" onmouseover= "OnMouseIn(this)" onmouseout= "OnMouseOut(this)" />	
 			</div>	
 		</div>
 		<div style="text-align:center; color: #FFFFFF" id="help_text">
@@ -86,11 +103,11 @@
 		<div id="map"></div>
 
 		<div id="floating-panel">
-			<input id="clearm_button" onclick="clearMarkers();" type=button value="Hide Markers" style="font-size: 50%" />
-			<input id="smarks_button" onclick="showMarkers();" type=button value="Show All Markers" style="font-size: 50%" />
-			<input id="dmarks_button" onclick="deleteMarkers();" type=button value="Delete Markers" style="font-size: 50%" />
-			<input id="exit_button" onclick="exit_streetview();" type=button value="Exit Streetview" style="font-size: 50%" />
-			<input id="navto_button" onclick="navigateto();" type=button value="Navigate" style="font-size: 50%" />
+			<input id="clearm_button" onclick="clearMarkers();" type=button value="Hide Markers" style="font-size: 50%" class="panel-buttons" onmouseover= "OnMouseIn_Panel(this)" onmouseout= "OnMouseOut_Panel(this)" />
+			<input id="smarks_button" onclick="showMarkers();" type=button value="Show All Markers" style="font-size: 50%" class="panel-buttons" onmouseover= "OnMouseIn_Panel(this)" onmouseout= "OnMouseOut_Panel(this)"/>
+			<input id="dmarks_button" onclick="deleteMarkers();" type=button value="Delete Markers" style="font-size: 50%" class="panel-buttons" onmouseover= "OnMouseIn_Panel(this)" onmouseout= "OnMouseOut_Panel(this)" />
+			<input id="exit_button" onclick="exit_streetview();" type=button value="Exit Streetview" style="font-size: 75%" class="panel-buttons" onmouseover= "OnMouseIn_Panel(this)" onmouseout= "OnMouseOut_Panel(this)" />
+			<input id="navto_button" onclick="navigateto();" type=button value="Navigate" style="font-size: 75%" class="panel-buttons" onmouseover= "OnMouseIn_Panel(this)" onmouseout= "OnMouseOut_Panel(this)" />
 		</div>
 	</div>
 </div>
@@ -138,6 +155,24 @@ function initMap() {
     addMarker(event.latLng);
   });
 }
+
+function OnMouseIn(elem){
+	elem.style.backgroundColor = "#C2C2C2";
+}
+
+function OnMouseOut(elem){
+	elem.style.backgroundColor = "#EEEEEE";
+}
+
+function OnMouseIn_Panel(elem){
+	elem.style.backgroundColor = "#787878";
+}
+
+function OnMouseOut_Panel(elem){
+	elem.style.backgroundColor = "#464646";
+}
+
+
 
 function look_up_point()
 {
@@ -19576,15 +19611,12 @@ function addMarker(location) {
 
     document.getElementById("exit_button").style.display = "inline";
     document.getElementById("navto_button").style.display = "inline";
+    document.getElementById("top_bit").style.display = "none";
     document.getElementById("clearm_button").style.display = "none";
     document.getElementById("dmarks_button").style.display = "none";
     document.getElementById("smarks_button").style.display = "none";
-    document.getElementById("site_id").style.display = "none";
-    document.getElementById("site_id_plot").style.display = "none";
-    document.getElementById("site_id_nav").style.display = "none";
-    document.getElementById("title").style.display = "none";
-    document.getElementById("wrapper").style.top = "0%";
-    document.getElementById("wrapper").style.height = "100%";
+    document.getElementById("map").style.height = "calc(100% + 65px)";
+
     history_point = location;
  });
 
@@ -19709,14 +19741,7 @@ function site_id_plot()
     document.getElementById("clearm_button").style.display = "none";
     document.getElementById("dmarks_button").style.display = "none";
     document.getElementById("smarks_button").style.display = "none";
-    //document.getElementById("site_id_plot").style.display = "none";
-    //document.getElementById("site_id_nav").style.display = "none";
-    //document.getElementById("title").style.display = "none";
-    //document.getElementById("site_id").style.display = "none";
-    //document.getElementById("wrapper").style.top = "0%";
     document.getElementById("map").style.height = "calc(100% + 65px)";
-
-
     
     history_point = latLng;
  });
