@@ -33,8 +33,8 @@
 
 		#wrapper {
 			position: absolute;
-			top:calc(0% + 75px);
-			height:calc(100% - 75px);
+			top:calc(0% + 80px);
+			height:calc(100% - 80px);
 			width: 100%;
 		}
 
@@ -42,10 +42,11 @@
 			position: absolute;
 			margin: 0px auto;
 			width: 100%;
-			top: 1%;
+			top: -5%;
 			z-index: 99;
 			text-align: center;
 			font-family: 'Roboto', 'sans-serif';
+			font-size: 300%;
 		}
 </style>		
 </head>	
@@ -53,7 +54,7 @@
 <div style="text-align:center; width: 100%">
 	<div id="title" style="margin: 0 auto; width: 100%; color: #FFFFFF">
 		Site:
-		<input type="text" id="site_id" style="text-align:center; font-family: Helvetica; font-size: 100%" placeholder ="Site ID" onkeydown = "if (event.keyCode == 13)
+		<input type="text" id="site_id" style="text-align:center; font-family: Helvetica; font-size: 100%" class="Resize" placeholder ="Site ID" onkeydown = "if (event.keyCode == 13)
 			document.getElementById('site_id_plot').click()" />
 		<input type="button" id="site_id_plot" value="Find" onclick="site_id_plot()" style="font-family: Helvetica; font-size: 100%" />
 		<input type="button" id="site_id_nav" value="Navigate" onclick="site_id_nav()" style="font-family: Helvetica; font-size: 100%" />	
@@ -67,11 +68,11 @@
 	<div id="map"></div>
 
 	<div id="floating-panel">
-		<input id="clearm_button" onclick="clearMarkers();" type=button value="Hide Markers" style="font-size:18px">
-		<input id="smarks_button" onclick="showMarkers();" type=button value="Show All Markers" style="font-size:18px">
-		<input id="dmarks_button" onclick="deleteMarkers();" type=button value="Delete Markers" style="font-size:18px">
-		<input id="exit_button" onclick="exit_streetview();" type=button value="Exit Streetview" style="font-size:18px">
-		<input id="navto_button" onclick="navigateto();" type=button value="Navigate" style="font-size:18px">
+		<input id="clearm_button" onclick="clearMarkers();" type=button value="Hide Markers" style="font-size: 50%" />
+		<input id="smarks_button" onclick="showMarkers();" type=button value="Show All Markers" style="font-size: 50%" />
+		<input id="dmarks_button" onclick="deleteMarkers();" type=button value="Delete Markers" style="font-size: 50%" />
+		<input id="exit_button" onclick="exit_streetview();" type=button value="Exit Streetview" style="font-size: 50%" />
+		<input id="navto_button" onclick="navigateto();" type=button value="Navigate" style="font-size: 50%" />
 	</div>
 </div>
 
@@ -84,9 +85,9 @@
 
 <script>
 
-var input = document.querySelectorAll('input');
+var input = document.querySelectorAll('.Resize');
 for(i=0; i<input.length; i++){
-    input[i].setAttribute('size',input[i].getAttribute('placeholder').length);
+    input[i].setAttribute('size',(input[i].getAttribute('placeholder').length + 2));
 }
 
 
