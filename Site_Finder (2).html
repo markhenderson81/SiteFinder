@@ -23,6 +23,7 @@
 			width: 100%;
 			font-family: Helvetica;
 			font-size: 300%;
+			z-index: 999;
 		}
 
 		#map {
@@ -44,7 +45,7 @@
 			/*margin: 0px auto;*/
 			width: 100%;
 			/*top: calc(0% + 65px);*/
-			z-index: 999;
+			z-index: 2;
 			top: calc(100% - 20px);
 			text-align: center;
 			font-family: 'Roboto', 'sans-serif';
@@ -52,9 +53,9 @@
 		}
 
 		#top_bit {
-
 			float: left;
-			width: 100%;	
+			width: 100%;
+		
 		}
 
 		#full {
@@ -19616,12 +19617,16 @@ function exit_streetview() {
   document.getElementById("clearm_button").style.display = "inline";
   document.getElementById("dmarks_button").style.display = "inline";
   document.getElementById("smarks_button").style.display = "inline";
+  document.getElementById("top_bit").style.display = "inline";
   document.getElementById("site_id").style.display = "inline";
   document.getElementById("site_id_plot").style.display = "inline";
   document.getElementById("site_id_nav").style.display = "inline";
   document.getElementById("title").style.display = "inline";
-  document.getElementById("wrapper").style.top = "calc(0% + 75px)";
-  document.getElementById("wrapper").style.height = "calc(100% - 75px)";
+  //document.getElementById("wrapper").style.top = "calc(0% + 75px)";
+  //document.getElementById("wrapper").style.height = "calc(100% - 75px)";
+
+ 
+
 }
 
 function site_id_nav()
@@ -19699,15 +19704,20 @@ function site_id_plot()
 	});
     document.getElementById("exit_button").style.display = "inline";
     document.getElementById("navto_button").style.display = "inline";
+    document.getElementById("top_bit").style.display = "none";
+
     document.getElementById("clearm_button").style.display = "none";
     document.getElementById("dmarks_button").style.display = "none";
     document.getElementById("smarks_button").style.display = "none";
-    document.getElementById("site_id_plot").style.display = "none";
-    document.getElementById("site_id_nav").style.display = "none";
-    document.getElementById("title").style.display = "none";
-    document.getElementById("site_id").style.display = "none";
-    document.getElementById("wrapper").style.top = "0%";
-    document.getElementById("wrapper").style.height = "100%";
+    //document.getElementById("site_id_plot").style.display = "none";
+    //document.getElementById("site_id_nav").style.display = "none";
+    //document.getElementById("title").style.display = "none";
+    //document.getElementById("site_id").style.display = "none";
+    //document.getElementById("wrapper").style.top = "0%";
+    document.getElementById("map").style.height = "calc(100% + 65px)";
+
+
+    
     history_point = latLng;
  });
 
