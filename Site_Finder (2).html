@@ -19,10 +19,9 @@
 		}
 
 		#title {
-			position:absolute;
+			position:relative;
 			height:100%;
 			width: 100%;
-			top: 20%;
 			font-family: Helvetica;
 			font-size: 300%;
 			z-index: 999;
@@ -36,9 +35,9 @@
 		}
 
 		#wrapper {
-			position: relative;
-			/*top:calc(0% + 80px);*/
-			height: 88%;
+			position: absolute;
+			top:calc(0% + 75px);
+			height: calc(100% - 75px);
 			width: 100%;
 		}
 
@@ -48,7 +47,7 @@
 			width: 100%;
 			/*top: calc(0% + 65px);*/
 			z-index: 2;
-			top: 14%;
+			top: 1%;
 			text-align: center;
 			font-family: Helvetica;
 			font-size: 300%;
@@ -57,7 +56,7 @@
 		#top_bit {
 			position: relative;
 			float: left;
-			height: 12%;
+			height: 100%;
 			width: 100%;
 		
 		}
@@ -161,6 +160,12 @@ function initMap() {
     addMarker(event.latLng);
   });
 }
+
+
+window.addEventListener('resize', function(event){
+  // On resize events here
+});
+
 
 function OnMouseIn(elem){
 	elem.style.backgroundColor = "#C2C2C2";
@@ -19646,9 +19651,11 @@ function addMarker(location) {
     document.getElementById("clearm_button").style.display = "none";
     document.getElementById("dmarks_button").style.display = "none";
     document.getElementById("smarks_button").style.display = "none";
+    document.getElementById("title").style.display = "none";
     document.getElementById("top_bit").style.height = "0%";
+    document.getElementById("wrapper").style.top = "0%";
     document.getElementById("wrapper").style.height = "100%";
-    document.getElementById("floating-panel").style.top = "5%";
+    //document.getElementById("floating-panel").style.top = "5%";
 
     history_point = location;
  });
@@ -19684,15 +19691,22 @@ function exit_streetview() {
   document.getElementById("smarks_button").style.display = "inline";
 
   document.getElementById("top_bit").style.display = "inline";
+  document.getElementById("title").style.display = "inline";
 
 
 
-  document.getElementById("top_bit").style.height = "12%";
+  document.getElementById("top_bit").style.height = "100%"; // this one
   
   document.getElementById("top_bit").style.width = "100%";
+  document.getElementById("wrapper").style.top = "calc(0% + 75px)"; // this one
+  document.getElementById("wrapper").style.height = "calc(100% - 75px)"; // this one
+
+
+  document.getElementById("top_bit").style.top = "0%";
   
-  document.getElementById("wrapper").style.height = "88%";
-  document.getElementById("floating-panel").style.top = "14%";
+
+  document.getElementById("floating-panel").style.top = "1%";
+
 }
 
 function site_id_nav()
@@ -19800,9 +19814,11 @@ function site_id_plot()
     document.getElementById("clearm_button").style.display = "none";
     document.getElementById("dmarks_button").style.display = "none";
     document.getElementById("smarks_button").style.display = "none";
+    document.getElementById("title").style.display = "none";
     document.getElementById("top_bit").style.height = "0%";
+    document.getElementById("wrapper").style.top = "0%";
     document.getElementById("wrapper").style.height = "100%";
-    document.getElementById("floating-panel").style.top = "5%";
+   // document.getElementById("floating-panel").style.top = "5%";
     
     history_point = latLng;
  });
