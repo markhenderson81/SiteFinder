@@ -7,10 +7,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>	
 	<style type="text/css">
 		
-
-
-
-
 		body {
 			position:absolute;
 			height:100%;
@@ -22,15 +18,11 @@
 			font-family: Helvetica;
 		}
 
-		
-		
-
-		
-
 		#title {
-			position:relative;;
+			position:absolute;
 			height:100%;
 			width: 100%;
+			top: 20%;
 			font-family: Helvetica;
 			font-size: 300%;
 			z-index: 999;
@@ -63,6 +55,7 @@
 		}
 
 		#top_bit {
+			position: relative;
 			float: left;
 			height: 12%;
 			width: 100%;
@@ -80,7 +73,7 @@
 			background-color: #464646;
 			color: white; 
 			border: none;
-			padding: 8px 20px;
+			padding: 12px 20px;
 			border-radius: 4px;
 			border: 2px solid #FFFFFF;
 			opacity: 0.75;
@@ -109,9 +102,6 @@
 				<input type="button" id="site_id_plot" value="Find" onclick="site_id_plot()" style="font-family: Helvetica; font-size: 100%" class="title-buttons" onmouseover= "OnMouseIn(this)" onmouseout= "OnMouseOut(this)"/>
 				<input type="button" id="site_id_nav" value="Navigate" onclick="site_id_nav()" style="font-family: Helvetica; font-size: 100%" class="title-buttons" onmouseover= "OnMouseIn(this)" onmouseout= "OnMouseOut(this)" />	
 			</div>	
-		</div>
-		<div style="text-align:center; color: #FFFFFF" id="help_text">
-			Click any Map Marker to enter Street View
 		</div>
 	</div> 
 
