@@ -48,7 +48,7 @@
 			width: 100%;
 			/*top: calc(0% + 65px);*/
 			z-index: 2;
-			top: 100%;
+			top: 14%;
 			text-align: center;
 			font-family: Helvetica;
 			font-size: 300%;
@@ -19622,7 +19622,7 @@ function addMarker(location) {
     document.getElementById("smarks_button").style.display = "none";
     document.getElementById("top_bit").style.height = "0%";
     document.getElementById("wrapper").style.height = "100%";
-    document.getElementById("floating-panel").style.top = "88%";
+    document.getElementById("floating-panel").style.top = "5%";
 
     history_point = location;
  });
@@ -19658,30 +19658,15 @@ function exit_streetview() {
   document.getElementById("smarks_button").style.display = "inline";
 
   document.getElementById("top_bit").style.display = "inline";
-  //document.getElementById("title").style.display = "inline";
 
 
 
   document.getElementById("top_bit").style.height = "12%";
   
   document.getElementById("top_bit").style.width = "100%";
-  //document.getElementById("title").style.width = "100%";
-  //document.getElementById("title").style.textAlign= "center";
-
-
-
-  //document.getElementById("site_id").style.display = "inline";
-  //document.getElementById("site_id_plot").style.display = "inline";
-  //document.getElementById("site_id_nav").style.display = "inline";
   
   document.getElementById("wrapper").style.height = "88%";
-  document.getElementById("floating-panel").style.top = "100%";
-
-  //document.getElementById("wrapper").style.top = "calc(0% + 75px)";
-  //document.getElementById("wrapper").style.height = "calc(100% - 75px)";
-
- 
-
+  document.getElementById("floating-panel").style.top = "14%";
 }
 
 function site_id_nav()
@@ -19716,15 +19701,39 @@ function site_id_plot()
   global_longitude = latLng;
   var my_label = document.getElementById('site_id').value;
 
-  document.getElementById('site_id').select();
+  //document.getElementById('site_id').select();
   
+
+
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+ 		var pinIcon = new google.maps.MarkerImage(
+    		"http://icons.iconarchive.com/icons/paomedia/small-n-flat/96/map-marker-icon.png",
+    		null, /* size is determined at runtime */
+    		null, /* origin is 0,0 */
+    		null, /* anchor is bottom center of the scaled image */
+    	
+		);
+	}
+	else{
+		var pinIcon = new google.maps.MarkerImage(
+    		"http://icons.iconarchive.com/icons/paomedia/small-n-flat/96/map-marker-icon.png",
+    		null, /* size is determined at runtime */
+    		null, /* origin is 0,0 */
+    		null, /* anchor is bottom center of the scaled image */
+    		new google.maps.Size(50, 50)
+		);
+	}
+
+
     var marker = new google.maps.Marker({
+    	icon: pinIcon,
 		position: latLng,
 		map: map,
 		title: my_label,
 		labelOrigin: new google.maps.Point(9,9),
 		animation: google.maps.Animation.DROP
 	});
+
 
   map.setZoom(15);
   map.setCenter(marker.getPosition());
@@ -19766,7 +19775,7 @@ function site_id_plot()
     document.getElementById("smarks_button").style.display = "none";
     document.getElementById("top_bit").style.height = "0%";
     document.getElementById("wrapper").style.height = "100%";
-    document.getElementById("floating-panel").style.top = "88%";
+    document.getElementById("floating-panel").style.top = "5%";
     
     history_point = latLng;
  });
