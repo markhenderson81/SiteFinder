@@ -85,23 +85,72 @@
 			background-color: #EEEEEE;
 		}
 
-		@media only screen
-		and (min-device-width : 320px)
-		and (max-device-width : 480px) {
-			body{
+		@media only screen and (-webkit-device-pixel-ratio: .75) {
+  /* CSS for Low-density screens goes here *
+   * Ex: HTC Evo, HTC Incredible, Nexus One */
+   		body{
 				position:absolute;
 			height:100%;
 			width: 100%;
 			margin:0;
 			padding:0;
 			background-color: #464646;
-			font-size: 20px;
+			font-size: 30px;
 			font-family: Helvetica;
 			}
-		}
+}
+
+@media only screen and (-webkit-device-pixel-ratio: 1) and (max-device-width: 768px) {
+  /* CSS for Medium-density screens goes here *
+   * Ex: Samsung Ace, Kindle Fire, Macbook Pro *
+   * max-device-width added so you don't target laptops and desktops */
+   		body{
+				position:absolute;
+			height:100%;
+			width: 100%;
+			margin:0;
+			padding:0;
+			background-color: #464646;
+			font-size: 30px;
+			font-family: Helvetica;
+			}
+}
+
+@media only screen and (-webkit-device-pixel-ratio: 1.5) {
+  /* CSS for High-density screens goes here *
+   * Ex: Samsung Galaxy SII, HTC Nexus One, HTC Evo 3D */
+   		body{
+				position:absolute;
+			height:100%;
+			width: 100%;
+			margin:0;
+			padding:0;
+			background-color: #464646;
+			font-size: 30px;
+			font-family: Helvetica;
+			}
+}
+
+@media only screen and (-webkit-device-pixel-ratio: 2) {
+  /* CSS for Ultra-high-density (Retina) screens goes here *
+   * Ex: Samsung Galaxy SIII, HTC Evo LTE, iPhone 4 */
+   		body{
+				position:absolute;
+			height:100%;
+			width: 100%;
+			margin:0;
+			padding:0;
+			background-color: #464646;
+			font-size: 30px;
+			font-family: Helvetica;
+			}
+}
+
+
 
 		@media only screen
 		and (min-width : 1224px) {
+			/* FOR DESKTOPS*/
 			body{
 				position:absolute;
 			height:100%;
