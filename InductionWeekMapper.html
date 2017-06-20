@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>Site Locator</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerwithlabel/src/markerwithlabel.js"></script>
+    <style type="text/css">
+		
+		@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+
+body {
+  background-color: #3e94ec;
+  font-family: "Roboto", helvetica, arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  margin: 0;
+  padding: 0;
+}
+
+/*** Table Styles **/
+
+.table-fill {
+  background: white;
+  border-radius:3px;
+  border-collapse: collapse;
+  height: 100%;
+  margin: 0;
+  /*max-width: 10%;*/
+  padding:0px;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+}
+ 
+th {
+  color:#D5DDE5;;
+  background:#1b1e24;
+  border-bottom:4px solid #9ea7af;
+  border-right: 1px solid #343a45;
+  font-size:23px;
+  font-weight: 100;
+  padding:5px;
+  text-align:left;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  vertical-align:middle;
+}
+
+th:first-child {
+  border-top-left-radius:3px;
+}
+ 
+th:last-child {
+  border-top-right-radius:3px;
+  border-right:none;
+}
+  
+tr {
+  border-top: 1px solid #C1C3D1;
+  border-bottom-: 1px solid #C1C3D1;
+  color:#D5DDE5;
+  font-size:16px;
+  font-weight:normal;
+  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+ 
+tr:hover td {
+  background:#94A5B7;
+  color:#FFFFFF;
+  border-top: 1px solid #22262e;
+  border-bottom: 1px solid #22262e;
+}
+ 
+tr:first-child {
+  border-top:none;
+}
+
+tr:last-child {
+  border-bottom:none;
+}
+ 
+tr:nth-child(odd) td {
+  background: RGB(65,75,86);
+}
+ 
+tr:nth-child(odd):hover td {
+  background:#94A5B7;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius:3px;
+}
+ 
+tr:last-child td:last-child {
+  border-bottom-right-radius:3px;
+}
+ 
+td {
+  background:RGB(103,110,117);
+  padding:20px;
+  text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:18px;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #C1C3D1;
+}
+
+td:last-child {
+  border-right: 0px;
+}
+
+th.text-left {
+  text-align: left;
+}
+
+th.text-center {
+  text-align: center;
+}
+
+th.text-right {
+  text-align: right;
+}
+
+td.text-left {
+  text-align: left;
+}
+
+td.text-center {
+  text-align: center;
+}
+
+td.text-right {
+  text-align: right;
+}
+    	
+
+
+		/*position:absolute;
+			height:100%;
+			width: 100%;
+			margin:0;
+			padding:0;
+			background-color: rgb(0,0,0);
+			font-size: 16px;
+			font-family: Helvetica;
+		}
+*/
+		#title {
+			float: left;
+			/*position:relative;*/
+			margin-left: 1%;
+			width:90%;
+			height:100%;
+			/*width: 100%;*/
+			
+			color: #FFFFFF;
+			font-family: "Roboto", helvetica, arial, sans-serif;
+  
+  			text-rendering: optimizeLegibility;
+
+  
+  			font-size:40px;
+  			font-weight: 225;
+  			padding:5px;
+  			text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  			vertical-align:middle;
+
+
+
+
+			
+			z-index: 999;
+		}
+		#title_pic{
+			float:right;
+			margin-right: 1%;
+		}
+
+		#map {
+			
+			/*position: relative;*/
+			height:100%;
+			width:80%;
+			/*width: 100%;*/	
+			float: left;
+		}
+
+		#wrapper {
+			/*float:left;*/
+			position: absolute;
+			top:calc(0% + 85px);
+			height: calc(100% - 85px);
+			width: 100%;
+			clear: both;
+			background-color: rgb(0,0,0);
+		}
+
+		#floating-panel {
+			position: absolute;
+			/*margin: 0px auto;*/
+			width: 100%;
+			/*top: calc(0% + 65px);*/
+			top: 1%;
+			text-align: center;
+			font-family: Helvetica;
+			font-size: 300%;
+		}
+
+		#top_bit {
+			position: relative;
+			float: left;
+			height: 100%;
+			width: 100%;
+			background-color: rgb(0,25,168);
+		
+		}
+
+		#activity_table{
+
+			float:left;
+			height:100%;
+			width:20%;
+
+		}
+
+		#full {
+			height: 100%;	
+			/*height: -o-calc(100% - 65px);
+			height: -webkit-calc(100% - 65px);
+			height: -moz-calc(100% - 65px);*/
+		}
+
+		.panel-buttons{
+			background-color: #464646;
+			color: white; 
+			border: none;
+			padding: 12px 20px;
+			border-radius: 4px;
+			border: 2px solid #FFFFFF;
+			opacity: 0.75;
+		}
+
+		.title-buttons{
+			border: none;
+			padding: 2px 20px;
+			border-radius: 4px;
+			background-color: #EEEEEE;
+		}
+
+	
+
+
+</style> </head>
+  <body>
+
+    <div id="full">
+      <div id="top_bit">
+        <div style="width: 100%">
+          <br>
+          <div id="title">
+            Activity Locations - Graduate Induction Week
+				<!--<input id="site_id_nav" value="Navigate" onclick="site_id_nav()" style="font-family: Helvetica; font-size: 100%"
+				class="title-buttons" onmouseover="OnMouseIn(this)" onmouseout="OnMouseOut(this)"
+				type="button">-->	
+			</div>	
+			<img id="title_pic" src="https://upload.wikimedia.org/wikipedia/commons/9/9e/TfL_white_roundel_%28no_text%29.svg" width =64 height=52>
+		</div>
+	   </div> 
+
+	<div id="wrapper">
+
+		<div id="activity_table">
+			<table class="table-fill">
+				<thead>
+					<tr>
+						<th class="text-left">Activity</th>
+						<th class="text-left">Group</th>
+						<th class="text-left">Location</th>
+					</tr>
+				</thead>
+				<tbody class="table-hover">
+					<tr onmouseover="OnMouseIn(0)">
+						<td class="text-left">One</td>
+						<td class="text-left">1</td>
+						<td class="text-left">Palestra</td>
+					</tr>
+					<tr onmouseover="OnMouseIn(1)">
+						<td class="text-left">Two</td>
+						<td class="text-left">2</td>
+						<td class="text-left">Broadway</td>
+					</tr>
+					<tr onmouseover="OnMouseIn(2)">
+						<td class="text-left">Three</td>
+						<td class="text-left">3</td>
+						<td class="text-left">Ashfield House</td>
+					</tr>
+					<tr onmouseover="OnMouseIn(3)">
+						<td class="text-left">Four</td>
+						<td class="text-left">4</td>
+						<td class="text-left">Templar House</td>
+					</tr>
+
+				</tbody>
+			</table>
+  		</div>
+		
+		<div id="map"></div>
+		
+		<div id="floating-panel">
+			<input id="exit_button" onclick="exit_streetview();" value="Exit Streetview"
+style="font-size: 75%" class="panel-buttons" onmouseover="OnMouseIn_Panel(this)"
+onmouseout="OnMouseOut_Panel(this)" type="button">
+			<input id="navto_button" onclick="navigateto();" value="Navigate" style="font-size: 75%"
+class="panel-buttons" onmouseover="OnMouseIn_Panel(this)" onmouseout="OnMouseOut_Panel(this)"
+type="button">
+
+		</div> 
+	</div>
+
+<!-- Replace the value of the key parameter with your own API key. -->
+<script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcwt1I5qndjaFS4bFe7q72ZgBpSFI0OmI&callback=initMap">
+</script>
+
+<div style="text-align:center; color: #FFFFFF">
+</div>
+
+<script>
+
+
+var markers_array = new Array();
+var map;
+var panorama;
+var history_point = {
+  lat: 51.503753,
+  lng: -0.10439225
+};
+var current_zoom = 10;
+var strData;
+var global_longitude;
+var global_latitude;
+
+function initMap() {
+
+  document.getElementById("exit_button").style.display = "none";
+  document.getElementById("navto_button").style.display = "none";
+
+  var map_point = {
+    lat: 51.5,
+    lng: -0.1
+  }
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: current_zoom,
+    center: history_point
+  });
+
+  site_id_plot(51.503753,-0.10439225,"Palestra");
+  site_id_plot(51.499202,-0.13346035,"Broadway");
+  site_id_plot(51.490710,-0.20489193,"Ashfield House");
+  site_id_plot(51.517999,-0.11744387,"Templar House");
+
+}
+
+function OnMouseIn(elem){
+
+	map.panTo(markers_array[elem].getPosition());
+	//map.setCenter(markers_array[elem].getPosition());
+	//map.setZoom(15);
+
+}
+
+
+function setMapOnAll(map) {
+  for (var i = 0; i < markers_array.length; i++) {
+    markers_array[i].setMap(map);
+  }
+}
+    
+function exit_streetview() {
+  current_zoom = 15;
+  initMap();
+  showMarkers();
+  document.getElementById("exit_button").style.display = "none";
+  document.getElementById("navto_button").style.display = "none";
+
+
+  document.getElementById("top_bit").style.display = "inline";
+  document.getElementById("title").style.display = "inline";
+
+
+
+  document.getElementById("top_bit").style.height = "100%"; // this one
+  
+  document.getElementById("top_bit").style.width = "100%";
+  document.getElementById("wrapper").style.top = "calc(0% + 85px)"; // this one
+  document.getElementById("wrapper").style.height = "calc(100% - 85px)"; // this one
+
+
+  document.getElementById("top_bit").style.top = "0%";
+  
+
+  document.getElementById("floating-panel").style.top = "1%";
+
+}
+
+function site_id_nav()
+{
+  look_up_point();
+  if (global_latitude != 0)
+	if(global_longitude !=0)
+	{
+		global_longitude = new google.maps.LatLng(global_latitude, global_longitude);
+   
+		navigateto();
+	}
+}
+
+function navigateto()
+{
+   var urlbuild="https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=";
+   urlbuild=urlbuild+global_longitude;
+
+   window.open(urlbuild,"_self");
+} 
+
+function site_id_plot(global_latitude,global_longitude,place)
+{
+//set global_latitude etc here 
+
+  
+  var latLng = new google.maps.LatLng(global_latitude, global_longitude);
+
+  //document.getElementById('site_id').select();
+  
+
+
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+ 		var pinIcon = new google.maps.MarkerImage(
+    		"http://icons.iconarchive.com/icons/paomedia/small-n-flat/128/map-marker-icon.png",
+    		null, /* size is determined at runtime */
+    		null, /* origin is 0,0 */
+    		null, /* anchor is bottom center of the scaled image */
+    		new google.maps.Size(128,128)
+    	
+		);
+	}
+	else{
+		var pinIcon = new google.maps.MarkerImage(
+    		"http://icons.iconarchive.com/icons/paomedia/small-n-flat/48/map-marker-icon.png",
+    		null, /* size is determined at runtime */
+    		null, /* origin is 0,0 */
+    		null /* anchor is bottom center of the scaled image */
+    		//new google.maps.Size(50, 50)
+		);
+	}
+
+    var marker = new google.maps.Marker({
+    	position: latLng,
+    	label: {
+
+    		text: place,
+    		fontWeight: 'bolder',
+    		fontSize: "18px",
+    		//fontFamily: 
+    		color: '#000000'
+    	},
+    	icon: {
+    		labelOrigin: new google.maps.Point(24,60),
+    		url: 'http://icons.iconarchive.com/icons/paomedia/small-n-flat/48/map-marker-icon.png',
+    		origin: new google.maps.Point(0,0),
+    		anchor: new google.maps.Point(11,40),
+    	},
+		map: map,
+		title: place,
+		
+		animation: google.maps.Animation.DROP
+	});
+
+
+  //map.setZoom(15);
+  //map.setCenter(marker.getPosition());
+
+
+  marker.addListener('click', function() {
+    //map.setZoom(15);
+    map.setCenter(marker.getPosition());
+	
+	var geocoder = new google.maps.Geocoder();
+	geocoder.geocode( { 'location': latLng  }, function(results, status) {
+		var lookTo = latLng;
+                global_longitude = latLng;
+		
+		var pano = new google.maps.StreetViewPanorama(
+
+
+      		document.getElementById('map'), {
+        		position: latLng,
+      		});
+
+		var service = new google.maps.StreetViewService;
+		service.getPanoramaByLocation(pano.getPosition(), 50, function(panoData){
+
+		var panoCenter = panoData.location.latLng;	
+      	var headingNew = google.maps.geometry.spherical.computeHeading(panoCenter,latLng);
+      	var pov = pano.getPov();
+      	pov.heading = headingNew;
+      	pano.setPov(pov);
+
+		});
+	});
+    document.getElementById("exit_button").style.display = "inline";
+    document.getElementById("navto_button").style.display = "inline";
+    document.getElementById("top_bit").style.display = "none";
+
+
+    document.getElementById("title").style.display = "none";
+    document.getElementById("top_bit").style.height = "0%";
+    document.getElementById("wrapper").style.top = "0%";
+    document.getElementById("wrapper").style.height = "100%";
+   // document.getElementById("floating-panel").style.top = "5%";
+    
+    history_point = latLng;
+ });
+
+markers_array.push(marker);
+
+}
+
+
+current_zoom=19;
+initMap();
+</script>
+</body></html>
